@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
     <title>SYJ</title>
 
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -45,67 +44,11 @@
     </div>
 </nav>
 <div>
-    <div class=" daohang ">
-        <form class="form-inline">
-            <select>
-                <option>文章</option>
-                <option>作者</option>
-                <option>分类</option>
-                <option>资源</option>
-            </select>
-            <div class="form-group">
-                <input id="form-control" type="text">
-            </div>
-            <button type="submit" class="btn btn-default" style="height: 35px;width: 60px;font-size: 16px;color: black;" >搜索</button>
-        </form>
-    </div>
+
     <div class="zj z">
-        <table class="table table-bordered ">
-
-            <tr >
-                <td class="yczt active"><span class="label label-success" >最近更新</span></td>
-            </tr>
-
-            <tr class="success" ng-repeat="v in blog">
-                <td>
-                    <h4>[{{v.blogsStatus==1?'原创':'转载'}}]{{v.blogsName}}</h4>
-                    <div>{{v.userName}} {{v.blogsDate|date:"yyyy-MM-dd HH:mm:ss"}} 阅读{{v.blogsClick}}次</div>
-                </td>
-            </tr>
-
-        </table>
-        <nav class="fy" aria-label="Page navigation">
-            <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true" ng-click="page(1)">首页</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true" ng-click="page1()">上一页</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true" ng-click="page2()">下一页</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true" ng-click="page(maxSize)">尾页</span>
-                    </a>
-                </li>
-                <li>
-
-                    <span aria-hidden="true">当前{{pageNum}}/{{maxSize}}页</span>
-
-                </li>
-            </ul>
 
 
-        </nav>
+
     </div>
     <div class="yb z">
         <table class="table table-bordered ">
@@ -281,9 +224,9 @@
                      signUpForm.username.$touched">
                             用户名不可为空
                         </p> <p class="error"
-                           ng-if="boole">
-                            用户名已存在
-                        </p>
+                                ng-if="boole">
+                        用户名已存在
+                    </p>
                         <p class="error"
                            ng-if="(signUpForm.username.$error.minlength ||
                      signUpForm.username.$error.maxlength) &&
@@ -340,7 +283,7 @@
                                      ng-show="my_form.phone_code.$invalid && my_form.$submitted">
                                     <small class="text-danger" ng-show="my_form.phone_code.$error.required">验证码</small>
                                 </div>
-                               <!-- <button ng-click="gbzhuce()">11111</button>-->
+                                <!-- <button ng-click="gbzhuce()">11111</button>-->
                             </div>
                         </div>
 
