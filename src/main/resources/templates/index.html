@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+<body ng-controller="indexcon" class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">首页</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav ">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">博客</a></li>
+                <li><a href="#">资源屋 </a></li>
+                <li><a href="#">关于我 </a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" ng-if="!userinfo">
+
+                <li><a data-toggle="modal" data-target="#login" >登陆</a></li>
+                <li><a data-toggle="modal" data-target="#rigister">注册</a></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" ng-if="userinfo">
+                <li><a href="#">个人中心</a></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div>
+    <div class=" daohang ">
+        <form class="form-inline">
+            <select>
+                <option>文章</option>
+                <option>作者</option>
+                <option>分类</option>
+                <option>资源</option>
+            </select>
+            <div class="form-group">
+                <input id="form-control" type="text">
+            </div>
+            <button type="submit" class="btn btn-default" style="height: 35px;width: 60px;font-size: 16px;color: black;" >搜索</button>
+        </form>
+    </div>
+    <div class="zj z">
+        <table class="table table-bordered ">
+
+            <tr >
+                <td class="yczt active"><span class="label label-success" >最近更新</span></td>
+            </tr>
+
+            <tr class="success" ng-repeat="v in blog">
+                <td>
+                    <h4>[{{v.blogsStatus==1?'原创':'转载'}}]{{v.blogsName}}</h4>
+                    <div>{{v.userName}} {{v.blogsDate|date:"yyyy-MM-dd HH:mm:ss"}} 阅读{{v.blogsClick}}次</div>
+                </td>
+            </tr>
+
+        </table>
+        <nav class="fy" aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true" ng-click="page(1)">首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true" ng-click="page1()">上一页</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true" ng-click="page2()">下一页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true" ng-click="page(maxSize)">尾页</span>
+                    </a>
+                </li>
+                <li>
+
+                    <span aria-hidden="true">当前{{pageNum}}/{{maxSize}}页</span>
+
+                </li>
+            </ul>
+
+
+        </nav>
+    </div>
+    <div class="yb z">
+        <table class="table table-bordered ">
+
+            <tr class="active">
+                <td class="yczt"><span class="label label-success ">本站公告</span></td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <h4 ng-repeat="a in ann">
+                        <a data-toggle="modal" data-target="#gonggao" ng-click="gonggao(a.announcementContext)">
+                            {{a.announcementTitle}}</a>
+                    </h4>
+                </td>
+            </tr>
+            <tr class="active">
+                <td class="yczt"><span class="label label-success">热门博客</span></td>
+            </tr>
+            <tr class="success">
+                <td class="yczt">
+                    <h4>标题</h4>
+                    <h4>标题</h4>
+                    <h4>标题</h4>
+                    <h4>标题</h4>
+
+                </td>
+            </tr>
+            <tr class="active">
+                <td class="yczt"><span class="label label-success">热门资源</span></td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <h4>标题</h4>
+                    <h4>标题</h4>
+                    <h4>标题</h4>
+                    <h4>标题</h4>
+
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+<div class="ds">
+
+    <button type="button" id="abc" class="btn btn-success" data-trigger="hover"
+            data-container="body" data-html="true" data-toggle="popover" data-placement="auto"
+            data-content="<img src='../static/css/imgs/1.jpg'>">打赏小编
+    </button>
+
+</div>
+<div class="dsx">
+</div>
+
+<!--公告弹出层-->
+<div class="modal fade" id="gonggao" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:30%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    当前公告
+                </h4>
+            </div>
+            <div>
+                {{AnnContext}}
+            </div>
+        </div>
+    </div>
+</div>
+<!--登陆弹出层-->
+<div class="modal fade" id="login" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:30%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="login1">
+                    登陆
+                </h4>
+            </div>
+            <div>
+                <form name="loginForm" ng-submit="loginForm1()" novalidate ng-cloak>
+                    <div class="form-group" ng-class="{'has-success':loginForm.uname.$valid}">
+                        <label>用户名:</label>
+                        <input name="uname"
+                               type="text"
+                               class="form-control"
+                               required
+                               ng-minlength="6"
+                               ng-maxlength="32"
+                        >
+                        <div class="fa fa-check input_result success"
+                             ng-if="loginForm.uname.$valid"></div>
+                        <p class="error"
+                           ng-if="loginForm.uname.$error.required &&
+                    loginForm.uname.$touched">
+                            用户名不可为空
+                        </p>
+                        <p class="error"
+                           ng-if="(loginForm.uname.$error.minlength ||
+                     loginForm.uname.$error.maxlength) &&
+                     loginForm.uname.$touched">
+                            用户名长度应在6至32位之间
+                        </p>
+                    </div>
+                    <div class="form-group  " ng-class="{'has-success':loginForm.pwd.$valid}">
+                        <label>密码:</label>
+                        <input name="pwd"
+                               type="password"
+                               class="form-control"
+                               required
+                               ng-minlength="6"
+                               ng-maxlength="16"
+                        >
+                        <div class="fa fa-check input_result success"
+                             ng-if="loginForm.pwd.$valid"></div>
+                        <p class="error"
+                           ng-if="loginForm.pwd.$error.required &&
+                     loginForm.pwd.$touched">
+                            密码不可为空
+                        </p>
+                        <p class="error"
+                           ng-if="(loginForm.pwd.$error.minlength ||
+                    loginForm.pwd.$error.maxlength) &&
+                    loginForm.pwd.$touched">
+                            密码长度应在6至16位之间
+                        </p>
+                    </div>
+                    <button class="btn btn-primary" style="margin-left: 45%" >登陆</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--注册弹出层-->
+<div class="modal fade" id="rigister" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="rigister1">
+                    注册
+                </h4>
+            </div>
+            <div>
+                <form name="signUpForm" ng-submit="submitForm()" novalidate ng-cloak>
+                    <div class="form-group" ng-class="{'has-success':signUpForm.username.$valid}">
+                        <label>用户名:</label>
+                        <input name="username"
+                               type="text"
+                               class="form-control"
+                               required
+                               ng-model="userdata.username"
+                               ng-minlength="6"
+                               ng-maxlength="32"
+                        >
+                        <div class="fa fa-check input_result success"
+                             ng-if="signUpForm.username.$valid"></div>
+                        <p class="error"
+                           ng-if="signUpForm.username.$error.required &&
+                     signUpForm.username.$touched">
+                            用户名不可为空
+                        </p> <p class="error"
+                           ng-if="boole">
+                            用户名已存在
+                        </p>
+                        <p class="error"
+                           ng-if="(signUpForm.username.$error.minlength ||
+                     signUpForm.username.$error.maxlength) &&
+                     signUpForm.username.$touched">
+                            用户名长度应在6至32位之间
+                        </p>
+                    </div>
+                    <div class="form-group  " ng-class="{'has-success':signUpForm.password.$valid}">
+                        <label>密码:</label>
+
+                        <input name="password"
+                               type="password"
+                               class="form-control"
+                               required
+                               ng-model="userdata.password"
+                               ng-minlength="6"
+                               ng-maxlength="16"
+                        >
+                        <div class="fa fa-check input_result success"
+                             ng-if="signUpForm.password.$valid"></div>
+                        <p class="error"
+                           ng-if="signUpForm.password.$error.required &&
+                     signUpForm.password.$touched">
+                            密码不可为空
+                        </p>
+                        <p class="error"
+                           ng-if="(signUpForm.password.$error.minlength ||
+                     signUpForm.password.$error.maxlength) &&
+                     signUpForm.password.$touched">
+                            密码长度应在6至16位之间
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">邮箱：</label>
+                        <input type="email" class="form-control" name="email" ng-model="data.email"
+                               value="{{data.email}}"
+                               id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                    <div class="form-group"> <!--style="height: 20px;"-->
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <label>验证码：</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" name="yzm" ng-model="rigister.yzm"
+                                       placeholder="验证码">
+                            </div>
+                            <div class="col-xs-2">
+
+                                <button class="btn" type="button" ng-click="vm.sendMessage()" ng-bind="paracont"
+                                        ng-disabled="vm.disabledClick"></button>
+                                <div class="m-t-xs text-left forget-text"
+                                     ng-show="my_form.phone_code.$invalid && my_form.$submitted">
+                                    <small class="text-danger" ng-show="my_form.phone_code.$error.required">验证码</small>
+                                </div>
+                               <!-- <button ng-click="gbzhuce()">11111</button>-->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="btn btn-primary" style="margin-left: 45%">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+<script src="http://code.angularjs.org/1.2.9/angular-cookies.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="../static/css/js/index.js"></script>
+</body>
+</html>

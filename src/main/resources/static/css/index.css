@@ -1,0 +1,60 @@
+.z{
+    float: left;
+}
+.y{
+    float: right;
+}
+.font{
+    color: red;
+    font-size: 20px;
+}
+.daohang{
+   margin-top: 100px;
+    margin-left: 280px;
+}
+.zj{
+    margin-left: 80px;
+    width: 821px;
+    height: 582px;
+}
+.yb{
+   /* margin-left: 900px;
+    margin-top: -521px;*/
+
+    width: 410px;
+}
+.fy{
+    margin-left: 210px;
+}
+.ds{
+clear: both;
+    margin-left: 600px;
+}
+.dsx{
+    margin-bottom: 30px;
+}
+.yczt{
+    font-size: 22px;
+}
+.zhucecuowu{
+    color: red;
+
+}
+#form-control{
+    width: 550px;
+    height: 35px;
+    background: none;
+    border: 1px solid #666666;
+    border-radius: 5px;
+
+}
+a{
+    color: black;
+}
+a:link{
+    color: black;
+}
+a:hover{
+    color: blue;
+    text-decoration: none;
+}

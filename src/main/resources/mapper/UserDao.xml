@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- mapper的根节点 -->
+<mapper namespace="com.syj.demo.dao.UserDao" >
+    <select id="findAll" resultType="com.syj.demo.entity.User">
+        SELECT * FROM USER 
+    </select>
+    <insert id="insertUser" parameterType="com.syj.demo.entity.User" useGeneratedKeys="true" keyProperty="registerId">
+        INSERT into user (userName,
+                          pwd,
+                          email,
+                          integral,
+                          userStatus)VALUES(
+            #{userName},#{pwd},#{email},#{integral},#{userStatus}
+        )/*; SELECT  LAST_INSERT_ID()*/
+    </insert>
+    <select id="findUser" parameterType="java.lang.String" resultType="com.syj.demo.entity.User">
+        SELECT * FROM user WHERE username=#{username}
+    </select>
+    <select id="findUserByNameAndPw"  resultType="com.syj.demo.entity.User">
+        SELECT * FROM user WHERE username=#{username} or email=#{username} and pwd=#{password}
+    </select>
+</mapper>
