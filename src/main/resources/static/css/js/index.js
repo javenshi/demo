@@ -179,4 +179,8 @@ angular.module("myapp", ["ngRoute"]).controller("indexcon", function ($scope, $h
 $(function () {
     $("#abc").popover();
     $("#gonggao").popover();
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('#editor') )
+    editor.create();
 });

@@ -39,9 +39,10 @@ public class MainController {
     @RequestMapping(value = "in",method = RequestMethod.GET)
     public String in(){
         return  "page/in";
-    } @RequestMapping(value = "write",method = RequestMethod.GET)
+    }
+    @RequestMapping(value = "write",method = RequestMethod.GET)
     public String write(){
-        return  "write";
+        return  "page/write";
     }
     @RequestMapping(value = "err",method = RequestMethod.GET)
     public String error(){
