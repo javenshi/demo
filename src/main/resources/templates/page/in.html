@@ -1,0 +1,100 @@
+<div class="zj z">
+<div class=" daohang ">
+    <form class="form-inline">
+        <select>
+            <option>文章</option>
+            <option>作者</option>
+            <option>分类</option>
+            <option>资源</option>
+        </select>
+        <div class="form-group">
+            <input id="form-control" type="text">
+        </div>
+        <button type="submit" class="btn btn-default" style="height: 35px;width: 60px;font-size: 16px;color: black;" >搜索</button>
+    </form>
+</div>
+<table class="table table-bordered ">
+    <tr >
+        <td class="yczt active"><span class="label label-success" >最近更新</span></td>
+    </tr>
+    <tr class="success" ng-repeat="v in blog">
+        <td>
+            <h4>[{{v.blogsStatus==1?'原创':'转载'}}]{{v.blogsName}}</h4>
+            <div>{{v.userName}} {{v.blogsDate|date:"yyyy-MM-dd HH:mm:ss"}} 阅读{{v.blogsClick}}次</div>
+        </td>
+    </tr>
+</table>
+<nav class="fy" aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true" ng-click="page(1)">首页</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true" ng-click="page1()">上一页</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true" ng-click="page2()">下一页</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true" ng-click="page(maxSize)">尾页</span>
+            </a>
+        </li>
+        <li>
+
+            <span aria-hidden="true">当前{{pageNum}}/{{maxSize}}页</span>
+
+        </li>
+    </ul>
+
+
+</nav>
+</div>
+<div class="yb z">
+    <table class="table table-bordered ">
+
+        <tr class="active">
+            <td class="yczt"><span class="label label-success ">本站公告</span></td>
+        </tr>
+        <tr class="success">
+            <td>
+                <h4 ng-repeat="a in ann">
+                    <a data-toggle="modal" data-target="#gonggao" ng-click="gonggao(a.announcementContext)">
+                        {{a.announcementTitle}}</a>
+                </h4>
+            </td>
+        </tr>
+        <tr class="active">
+            <td class="yczt"><span class="label label-success">热门博客</span></td>
+        </tr>
+        <tr class="success">
+            <td class="yczt">
+                <h4>标题</h4>
+                <h4>标题</h4>
+                <h4>标题</h4>
+                <h4>标题</h4>
+
+            </td>
+        </tr>
+        <tr class="active">
+            <td class="yczt"><span class="label label-success">热门资源</span></td>
+        </tr>
+        <tr class="success">
+            <td>
+                <h4>标题</h4>
+                <h4>标题</h4>
+                <h4>标题</h4>
+                <h4>标题</h4>
+
+            </td>
+        </tr>
+
+    </table>
+</div>

@@ -33,13 +33,18 @@ public class MainController {
     JavaMail jm;
     @RequestMapping(value = {"","/"})
     public String main(){
-        //userDao.findAll();
         return "index";
     }
 
+    @RequestMapping(value = "in",method = RequestMethod.GET)
+    public String in(){
+        return  "page/in";
+    } @RequestMapping(value = "write",method = RequestMethod.GET)
+    public String write(){
+        return  "write";
+    }
     @RequestMapping(value = "err",method = RequestMethod.GET)
     public String error(){
-        System.out.println("11");
         return  "error";
     }
     @ResponseBody

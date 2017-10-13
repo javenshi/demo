@@ -1,4 +1,4 @@
-angular.module("myapp", []).controller("indexcon", function ($scope, $http, $interval) {
+angular.module("myapp", ["ngRoute"]).controller("indexcon", function ($scope, $http, $interval) {
     $http({
         method: 'GET',
         url: '/index'
@@ -165,7 +165,17 @@ angular.module("myapp", []).controller("indexcon", function ($scope, $http, $int
 
 
 
-});
+}) .config(function ($routeProvider) {
+    $routeProvider.
+    when('/', {
+        templateUrl: 'in'
+    }).
+    when('/write', {
+        templateUrl: 'write'
+    }).
+    otherwise({
+        redirectTo : '/'
+    });});
 $(function () {
     $("#abc").popover();
     $("#gonggao").popover();
